@@ -12,7 +12,6 @@ class Snake:
         
 
     def update(self):
-        half_size = self.size/2
         self.snake = pygame.draw.rect(self.screen, (0, 0, 200), (self.x, self.y, self.size, self.size))
         self.move()
         self.check_growth()
@@ -50,4 +49,7 @@ class Snake:
         pass
 
     def check_collision(self):
+        pass
+
+    def get_rects(self):
         pass

@@ -5,6 +5,10 @@ class Game:
         self.screen = pygame.display.set_mode((winh, winw))
         self.__running = True
         self.snake = Snake(15, 2, self.screen)
+        self.fruit = None
+        self.fruit_x = 400
+        self.fruit_y = 300
+        self.fruit_size = 8
 
 
     def start_game(self):
@@ -18,9 +22,15 @@ class Game:
     def mainloop(self):
         self.screen.fill((0, 150, 0))
         self.snake.update()
+        self.update_fruit()
         
 
     def check_window_closure(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.__running = False
+
+    def update_fruit(self):
+        self.fruit = pygame.draw.circle(self.screen, (200, 0, 0), (self.fruit_x, self.fruit_y), self.fruit_size)
+        fruit_rect = pygame.Rect(self.fruit_x - self.fruit_size, self.fruit_y - self.fruit_size, self.fruit_size * 2, self.fruit_size * 2)
+        snake_rects = self.snake.get_rects()
